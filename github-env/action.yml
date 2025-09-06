@@ -1,0 +1,35 @@
+name: "Environment Variable Action"
+description: "Get the value of an environment variable"
+inputs:
+  repo:
+    description: "The repository to get the environment variable from"
+    required: true
+  env_name:
+    description: "The name of the environment"
+    required: true
+  gh_token:
+    description: "GitHub token for authentication"
+    required: true  
+
+runs:
+  using: "composite"
+  steps:
+    - name: checkout repository
+      uses: actions/checkout@v4
+
+    - name: Get environment variable
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.gh_token }}
+      run: |
+        ENV_VARS=$(gh variable list --json name,value -R ${{ inputs.repo }} -e ${{ inputs.env_name }}) 
+        echo "$ENV_VARS" >> env_var.json
+        echo "$ENV_VARS" | jq -r '.[]|"\(.name)=\(.value)"' >> $GITHUB_ENV  
+    
+    - name: "Print Environment Variables"
+      shell: bash
+      run: |
+        echo "Environment variables for ${{ inputs.env_name }}:"
+        cat env_var.json
+
+    

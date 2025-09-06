@@ -1,0 +1,18 @@
+name: "ASP Net Version Scanning"
+description: "Scans the ASP.NET version in the repository"
+inputs:
+  Urls:
+    description: "List of URLs to scan"
+    required: true
+    type: array
+
+runs:
+  using: "composite"
+  steps:
+    - name: "ASP Net Version Scan"
+      shell: bash
+      run: |
+        for url in ${{ inputs.Urls }}; do
+          echo "Scanning URL: $url"
+          # Add your scanning logic here
+        done
