@@ -5,6 +5,7 @@ const path = require('path');
 
 const repo = core.getInput('repo', { required: true });
 const envName = core.getInput('env_name', { required: true });
+const ghToken = core.getInput('gh_token', { required: true });
 
 async function run() {
   try {
@@ -17,6 +18,7 @@ async function run() {
         ...process.env,
         REPO: repo,
         ENV_NAME: envName,
+        GH_TOKEN: ghToken,
       }
     };
 
