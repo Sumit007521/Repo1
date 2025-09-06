@@ -10,7 +10,14 @@ async function run() {
     core.info(`My Repo: ${repo}`);
     // Optional: pass arguments to your script
     const scriptPath =  path.join(__dirname, 'script.sh');
-    const options = {}; // You can add listeners or env here if needed
+    // You can add listeners or env here if needed
+    const options = {
+      env: {
+        ...process.env,
+        REPO: repo,
+        // ENV_NAME: envName, // Uncomment if you have more inputs
+      }
+    };
 
     await exec.exec('bash', [scriptPath], options);
 
