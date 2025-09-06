@@ -1,6 +1,7 @@
 #!/bin/bash
 
-echo "Inside Script > My Repo: $REPO"
+echo "My Repo: $REPO"
+echo "Environment Name: $ENV_NAME"
 
 # ENV_VARS=$(gh variable list --json name,value -R ${{ inputs.repo }} -e ${{ inputs.env_name }}) 
 # echo "$ENV_VARS" >> env_var.json

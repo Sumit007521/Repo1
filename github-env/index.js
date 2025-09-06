@@ -4,10 +4,11 @@ const exec = require('@actions/exec');
 const path = require('path');
 
 const repo = core.getInput('repo', { required: true });
+const envName = core.getInput('env_name', { required: true });
 
 async function run() {
   try {
-    core.info(`My Repo: ${repo}`);
+    // core.info(`My Repo: ${repo}`);
     // Optional: pass arguments to your script
     const scriptPath =  path.join(__dirname, 'script.sh');
     // You can add listeners or env here if needed
@@ -15,7 +16,7 @@ async function run() {
       env: {
         ...process.env,
         REPO: repo,
-        // ENV_NAME: envName, // Uncomment if you have more inputs
+        ENV_NAME: envName,
       }
     };
 

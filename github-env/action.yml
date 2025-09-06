@@ -4,9 +4,9 @@ inputs:
   repo:
     description: "The repository to get the environment variable from"
     required: true
-  # env_name:
-  #   description: "The name of the environment"
-  #   required: true
+  env_name:
+    description: "The name of the environment"
+    required: true
   # gh_token:
   #   description: "GitHub token for authentication"
   #   required: true  
