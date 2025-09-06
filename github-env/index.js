@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const exec = require('@actions/exec');
+const path = require('path');
 
 const myInput = core.getInput('repo', { required: true });
 
@@ -8,7 +9,7 @@ async function run() {
   try {
     core.info('My Repo: ',myInput)
     // Optional: pass arguments to your script
-    const scriptPath = './script.sh';
+    const scriptPath =  path.join(__dirname, 'script.sh');
     const options = {}; // You can add listeners or env here if needed
 
     await exec.exec('bash', [scriptPath], options);
