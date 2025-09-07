@@ -8,9 +8,9 @@ echo "$ENV_VARS" >> env_var.json
 
 var_count=$(cat env_var.json | jq 'length')
 
-if [ $var_count -gt 0 ]; then
+if [ -n "$var_count" ] && [ "$var_count" -gt 0 ]; then
     echo "Number of variables retrieved: $var_count"
     echo "$ENV_VARS" | jq -r '.[]|"\(.name)=\(.value)"' >> $GITHUB_ENV  
 else
-    echo "No variables retrieved: $var_count"
+    echo "Zero variables retrieved."
 fi
